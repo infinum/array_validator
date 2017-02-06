@@ -1,4 +1,4 @@
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in validates_array.gemspec
+# Specify your gem's dependencies in array_validator.gemspec
 gemspec

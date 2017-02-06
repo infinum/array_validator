@@ -1,17 +1,16 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'validates_array/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'validates_array'
-  spec.version       = ValidatesArray::VERSION
+  spec.name          = 'array_validator'
+  spec.version       = '0.1.0'
   spec.authors       = ['Damir Svrtan']
   spec.email         = ['damir.svrtan@gmail.com']
 
   spec.summary       = 'Array validations for Rails'
   spec.description   = 'Array validations for Rails (e.g. Postgres jsonb columns)'
-  spec.homepage      = 'https://github.com/infinum/validates_array'
+  spec.homepage      = 'https://github.com/infinum/array_validator'
   spec.license       = 'MIT'
 
   spec.files = `git ls-files -z`.split("\x0").reject do |f|

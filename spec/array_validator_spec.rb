@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe ValidatesArray::Validator do
+RSpec.describe ArrayValidator do
   let(:plant_class) do
     Class.new do
       include ActiveModel::Validations
