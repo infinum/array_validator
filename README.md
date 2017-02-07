@@ -28,7 +28,7 @@ Don't allow duplicates:
 
 ```ruby
 class Plant < ActiveRecord::Base
-  validates :watering_times, array: { subset_of: ['trees', 'flowers'], duplicates: false }
+  validates :categories, array: { subset_of: ['trees', 'flowers'], duplicates: false }
 end
 ```
 
