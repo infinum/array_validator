@@ -19,8 +19,7 @@ And then execute:
 Validate the content of the array is a subset of a predefined list:
 
 ```ruby
-class Plant < ActiveModel
-  attr_accessor :categories  
+class Plant < ActiveRecord::Base
   validates :categories, array: { subset_of: ['trees', 'flowers'] }
 end
 ```
@@ -28,8 +27,7 @@ end
 Don't allow duplicates:
 
 ```ruby
-class Plant < ActiveModel
-  attr_accessor :categories
+class Plant < ActiveRecord::Base
   validates :watering_times, array: { subset_of: ['trees', 'flowers'], duplicates: false }
 end
 ```
@@ -37,10 +35,8 @@ end
 Validate each element matches a format:
 
 ```ruby
-class Plant < ActiveModel
+class Plant < ActiveRecord::Base
   HH_MM_REGEX = /(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]/
-
-  attr_accessor :watering_times
   validates :watering_times, array: { format: HH_MM_REGEX }
 end
 ```
