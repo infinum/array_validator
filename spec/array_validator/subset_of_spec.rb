@@ -26,12 +26,12 @@ describe 'array_validator#subset_of' do
   it 'returns false for value not in list' do
     plant.categories = ['weed']
     expect(plant.valid?).to eq(false)
-    expect(plant.errors[:categories].first).to eq('weed is not in the list')
+    expect(plant.errors[:categories].first).to eq('has invalid values: weed')
   end
 
   it 'returns false for values not in list' do
     plant.categories = ['weed', 'bushes']
     expect(plant.valid?).to eq(false)
-    expect(plant.errors[:categories].first).to match('weed, bushes are not in the list')
+    expect(plant.errors[:categories].first).to match('has invalid values: weed, bushes')
   end
 end

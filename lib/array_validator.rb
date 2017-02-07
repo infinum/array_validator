@@ -1,24 +1,19 @@
 require 'active_model'
 require 'active_support/i18n'
+I18n.load_path += Dir[File.dirname(__FILE__) + "/locale/*.yml"]
 
 class ArrayValidator < ActiveModel::EachValidator
+  I18N_SCOPE = 'activerecord.errors.messages.array'.freeze
+
   def validate_each(record, attribute, values)
     unless values.is_a? Array
       record.errors[attribute] << (options[:message] || 'is not an array')
       return
     end
 
-    if options[:subset_of].present?
-      check_subset(record, attribute, values)
-    end
-
-    if options[:format].present?
-      check_format(record, attribute, values)
-    end
-
-    if options[:duplicates] == false
-      check_duplicates(record, attribute, values)
-    end
+    check_subset(record, attribute, values) if options[:subset_of].present?
+    check_format(record, attribute, values) if options[:format].present?
+    check_duplicates(record, attribute, values) if options[:duplicates] == false
   end
 
   private
@@ -31,11 +26,7 @@ class ArrayValidator < ActiveModel::EachValidator
   end
 
   def subset_error_message(unlisted_values)
-    if unlisted_values.size == 1
-      "#{unlisted_values.first} is not in the list"
-    else
-      "#{unlisted_values.join(', ')} are not in the list"
-    end
+    I18n.t('subset_of', scope: I18N_SCOPE, invalid_values: unlisted_values.join(', '))
   end
 
   def check_format(record, attribute, values)
@@ -46,11 +37,7 @@ class ArrayValidator < ActiveModel::EachValidator
   end
 
   def format_error_message(invalid_values)
-    if invalid_values.size == 1
-      "#{invalid_values.first} is not in a valid format"
-    else
-      "#{invalid_values.join(', ')} are not in a valid format"
-    end
+    I18n.t('format', scope: I18N_SCOPE, invalid_values: invalid_values.join(', '))
   end
 
   def check_duplicates(record, attribute, values)
@@ -61,6 +48,6 @@ class ArrayValidator < ActiveModel::EachValidator
   end
 
   def duplicates_error_message(duplicates)
-    "has duplicates: #{duplicates.join(', ')}"
+    I18n.t('duplicates', scope: I18N_SCOPE, invalid_values: duplicates.join(', '))
   end
 end

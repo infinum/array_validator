@@ -19,12 +19,12 @@ describe 'array_validator#format' do
   it 'returns false for invalid value' do
     plant.watering_times = ['01:00', '31:00']
     expect(plant.valid?).to eq(false)
-    expect(plant.errors[:watering_times].first).to eq('31:00 is not in a valid format')
+    expect(plant.errors[:watering_times].first).to eq('not in a valid format: 31:00')
   end
 
   it 'returns false for invalid value' do
     plant.watering_times = ['31:00', 'abc']
     expect(plant.valid?).to eq(false)
-    expect(plant.errors[:watering_times].first).to eq('31:00, abc are not in a valid format')
+    expect(plant.errors[:watering_times].first).to eq('not in a valid format: 31:00, abc')
   end
 end
