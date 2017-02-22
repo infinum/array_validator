@@ -2,18 +2,6 @@
 
 ActiveModel Validations for array attributes (e.g. Postgres JSONB).
 
-## Installation
-
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'array_validator'
-```
-
-And then execute:
-
-    $ bundle
-
 ## Usage
 
 Validate the content of the array is a subset of a predefined list:
@@ -28,7 +16,7 @@ Don't allow duplicates:
 
 ```ruby
 class Plant < ActiveRecord::Base
-  validates :watering_times, array: { subset_of: ['trees', 'flowers'], duplicates: false }
+  validates :categories, array: { subset_of: ['trees', 'flowers'], duplicates: false }
 end
 ```
 
@@ -40,6 +28,19 @@ class Plant < ActiveRecord::Base
   validates :watering_times, array: { format: HH_MM_REGEX }
 end
 ```
+
+## Installation
+
+Add this line to your application's Gemfile:
+
+```ruby
+gem 'array_validator'
+```
+
+And then execute:
+
+    $ bundle
+
 
 ## TODO
 
