@@ -4,7 +4,7 @@ require 'active_support/i18n'
 I18n.load_path += Dir[File.dirname(__FILE__) + '/locale/*.yml']
 
 class ArrayValidator < ActiveModel::EachValidator
-  autoload :SortValidator, 'array_validator/sort_validator'
+  autoload :OrderValidator, 'array_validator/order_validator'
   I18N_SCOPE = 'activerecord.errors.messages.array'.freeze
 
   def validate_each(record, attribute, values)
@@ -16,7 +16,7 @@ class ArrayValidator < ActiveModel::EachValidator
     check_subset(record, attribute, values) if options[:subset_of].present?
     check_format(record, attribute, values) if options[:format].present?
     check_duplicates(record, attribute, values) if options[:duplicates] == false
-    SortValidator.call(record, attribute, values, options)
+    OrderValidator.call(record, attribute, values, options)
   end
 
   private
