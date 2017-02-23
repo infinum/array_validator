@@ -1,8 +1,10 @@
 require 'active_model'
 require 'active_support/i18n'
-I18n.load_path += Dir[File.dirname(__FILE__) + "/locale/*.yml"]
+
+I18n.load_path += Dir[File.dirname(__FILE__) + '/locale/*.yml']
 
 class ArrayValidator < ActiveModel::EachValidator
+  autoload :SortValidator, 'array_validator/sort_validator'
   I18N_SCOPE = 'activerecord.errors.messages.array'.freeze
 
   def validate_each(record, attribute, values)
@@ -14,7 +16,7 @@ class ArrayValidator < ActiveModel::EachValidator
     check_subset(record, attribute, values) if options[:subset_of].present?
     check_format(record, attribute, values) if options[:format].present?
     check_duplicates(record, attribute, values) if options[:duplicates] == false
-    check_if_sorted(record, attribute, values) if options[:sorted].present?
+    SortValidator.call(record, attribute, values, options)
   end
 
   private
@@ -50,22 +52,5 @@ class ArrayValidator < ActiveModel::EachValidator
 
   def duplicates_error_message(duplicates)
     I18n.t('duplicates', scope: I18N_SCOPE, invalid_values: duplicates.join(', '))
-  end
-
-  def check_if_sorted(record, attribute, values)
-    raise ArgumentError, 'Not a supported sorting option' unless [:asc, :desc].include?(options[:sorted])
-
-    sorted = if options[:sorted] == :asc
-               values.sort == values
-             else
-               values.sort.reverse == values
-             end
-    return if sorted
-
-    record.errors[attribute] << sorting_error_message(values)
-  end
-
-  def sorting_error_message(values)
-    I18n.t('sorting', scope: I18N_SCOPE, direction: "#{options[:sorted]}ending")
   end
 end
