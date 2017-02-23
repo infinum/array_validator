@@ -6,4 +6,4 @@ en:
           subset_of: 'has invalid values: %{invalid_values}'
           format: 'not in a valid format: %{invalid_values}'
           duplicates: 'has duplicates: %{invalid_values}'
-          sorting: 'is not ordered in %{direction} order'
+          order: 'is not ordered in %{direction} order'

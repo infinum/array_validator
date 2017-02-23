@@ -34,7 +34,7 @@ Validate the elements are ordered:
 ```ruby
 class Plant < ActiveRecord::Base
   validates :intake_times, array: { order: :asc }
-  validates :quantity, array: { order: :desc }
+  validates :quantities, array: { order: :desc }
 end
 ```
 

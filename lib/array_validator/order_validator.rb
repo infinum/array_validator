@@ -11,8 +11,8 @@ class ArrayValidator
                 end
       return if ordered
 
-      record.errors[attribute] << I18n.t(
-        'sorting', scope: ArrayValidator::I18N_SCOPE, direction: "#{options[:order]}ending"
+      record.errors[attribute].push(
+        I18n.t('order', scope: I18N_SCOPE, direction: "#{options[:order]}ending")
       )
     end
   end
