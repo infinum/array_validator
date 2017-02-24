@@ -3,7 +3,7 @@ language: ruby
 before_install: gem install bundler -v 1.14.3
 script:
   - bundle exec rspec spec/
-
+  - bundle exec codeclimate-test-reporter
 matrix:
   include:
     - rvm: 2.2.2
