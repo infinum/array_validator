@@ -1,5 +1,9 @@
 # ArrayValidator
 
+[![Build Status](https://travis-ci.org/infinum/array_validator.png)](https://travis-ci.org/infinum/array_validator)
+[![Code Climate](https://codeclimate.com/github/infinum/array_validator/badges/gpa.svg)](https://codeclimate.com/github/infinum/array_validator)
+[![Test Coverage](https://codeclimate.com/github/infinum/array_validator/badges/coverage.svg)](https://codeclimate.com/github/infinum/array_validator/coverage)
+
 ActiveModel Validations for array attributes (e.g. Postgres JSONB).
 
 ## Usage
