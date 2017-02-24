@@ -1,5 +1,7 @@
 # ArrayValidator
 
+[![Build Status](https://travis-ci.org/infinum/array_validator.png)](https://travis-ci.org/infinum/array_validator)
+
 ActiveModel Validations for array attributes (e.g. Postgres JSONB).
 
 ## Usage
