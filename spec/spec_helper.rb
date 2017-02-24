@@ -1,5 +1,8 @@
 require 'simplecov'
-SimpleCov.start
+SimpleCov.start do
+  add_filter { |src| src.filename =~ /spec/ }
+end
+
 require 'bundler/setup'
 require 'pry'
 require 'array_validator'
