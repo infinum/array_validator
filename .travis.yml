@@ -1,5 +1,16 @@
 sudo: false
 language: ruby
-rvm:
-  - 2.3.1
-before_install: gem install bundler -v 1.14.3
+script:
+  - RAILS_ENV=test bundle exec rake db:migrate --trace
+  - bundle exec rspec spec/
+
+matrix:
+  include:
+    - rvm: 2.0.0
+      env: "RAILS_VERSION=4.0.0"
+    - rvm: 2.1.2
+      env: "RAILS_VERSION=4.1.0"
+    - rvm: 2.2.0
+      env: "RAILS_VERSION=4.2.0"
+    - rvm: 2.3.0
+      env: "RAILS_VERSION=5.0.0"
