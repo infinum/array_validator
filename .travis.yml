@@ -8,4 +8,4 @@ matrix:
     - rvm: 2.2.2
     - rvm: 2.3.0
     - rvm: 2.4.0
-after_script: bundle exec codeclimate-test-reporter
+after_script: CODECLIMATE_REPO_TOKEN=21d49e6de63665678051090cd19d80d8d2707599f7e714dea1f7ecb6a66b0578 bundle exec codeclimate-test-reporter
